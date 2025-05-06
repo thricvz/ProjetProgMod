@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT
-#include "doctest.h"
-#include "coord.hpp"
+#include "../include/doctest.h"
+#include "../include/ensemble.hpp"
 
 
 TEST_SUITE_BEGIN("Constructeur");

@@ -7,3 +7,8 @@ test%.o : test/test%.cpp
 testcoord : coord.o testcoord.o ensemble.o
 	g++ -g $^ -o $@
 
+testensemble: ensemble.o testensemble.o
+	g++ -g $^ -o $@
+	
+clean: 
+	rm *.o testcoord
