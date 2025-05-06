@@ -6,8 +6,8 @@ class Grille{
     
     public:
         Grille();
-        bool caseVide();
-        int getCase();
+        bool caseVide(Coord c);
+        int getCase(Coord c);
         void videCase(Coord c);
         void setCase(int idAnimal, Coord coordAnimal);
 
