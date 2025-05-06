@@ -2,28 +2,39 @@
 #include "../include/population.hpp"
 
 Population::Population(){
-    vector<Animal*> pop = vector<Animal*>(0);
-    
+    vector<Animal*> pop = vector<Animal*>(0);    
 }
 
 Animal * Population::get(int id){
-    return pop[id];
+    for(int i=0;i<pop.size();i++){
+        if(pop[i]->getId()==id)
+            return pop[i];
+    }
+    return nullptr;
 }
 
 vector<int> Population::getIds(){
-    vector<int> sousPop;
+    vector<int> ids;
     for (int i=0;i<pop.size();i++){
-        sousPop.push_back(pop[i]->id);
+        ids.push_back(pop[i]->getId());
     }
-    return sousPop;
+    return ids;
 }
 
 int Population::reserve(){
-    int id = last_id;
-    last_id++;
-    pop.push_back(NULL);
-    //mettre a jour l'identifiant
-    return id;
+    if(reusable_id.size()!=0){
+        int id = reusable_id.at(0);
+        reusable_id.erase(reusable_id.begin());
+        pop[id] = nullptr;
+    }
+    else{
+
+        int id = available_id;
+        available_id++;
+        pop.push_back(nullptr);
+        //mettre a jour l'identifiant
+        return id;
+    }
 }
 
 
@@ -33,11 +44,12 @@ void Population::set(Espece e, Coord c){
 };
 
 
-void Population::supprime(int i){
-    Animal *animalAtuer = get(i);
-    pop.pop_back();
+void Population::supprime(int id){
+    Animal *animalAtuer = get(id);
+    pop[id] = nullptr;
     delete animalAtuer;
-    last_id--;
+    //ne pas enlever la case du animal tuer car utilise dans id
+    reusable_id.push_back(id);
 };
 
 

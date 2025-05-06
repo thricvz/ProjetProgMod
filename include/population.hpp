@@ -4,7 +4,8 @@ using namespace std;
 
 class Population{
     vector<Animal*> pop;
-    int last_id=0;
+    int available_id=0;
+    vector<int> reusable_id = vector<int>(0);
     public:
         Population();
 

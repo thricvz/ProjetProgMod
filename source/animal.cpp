@@ -5,7 +5,8 @@
 
 Animal::Animal(){
     id = -1;   
-};
+
+}
 
 Animal::Animal(int identifiant,Espece e, Coord c){
     id = identifiant;
