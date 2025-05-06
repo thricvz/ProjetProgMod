@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT
-#include "doctest.h"
-#include "coord.hpp"
+#include "../include/doctest.h"
+#include "../include/coord.hpp"
 
 int main(int argc, const char** argv){
     Coord c = Coord(50);

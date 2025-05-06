@@ -1,5 +1,5 @@
 #include "doctest.h"
-#include "Ensemble.hpp"
+#include "ensemble.hpp"
 
 Ensemble::Ensemble(){
 	t=vector<int>(MAXCARD);

@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT
-#include "doctest.h"
-#include "coord.hpp"
+#include "../include/doctest.h"
+#include "../include/coord.hpp"
 
 //TEST VARIABLE GLOBALE TAILLE GRILLE
 TEST_CASE("Test variable Globale TAILLEGRILLE" ){
