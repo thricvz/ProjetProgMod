@@ -1,6 +1,8 @@
-#include "doctest.h"
-#include "ensemble.hpp"
+#include "../include/ensemble.hpp"
+#include <iostream>
+#include <ostream>
 
+using namespace std;
 Ensemble::Ensemble(){
 	t=vector<int>(MAXCARD);
 	card=0;

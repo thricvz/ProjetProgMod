@@ -1,5 +1,6 @@
 #include <vector>
 #include <ctime>
+#include <ostream>
 const int MAXCARD = 10;
 using namespace std;
 
