@@ -11,4 +11,4 @@ testensemble: ensemble.o testensemble.o
 	g++ -g $^ -o $@
 	
 clean: 
-	rm *.o testcoord
+	rm *.o testcoord testensemble
