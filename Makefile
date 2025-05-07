@@ -14,4 +14,4 @@ testensemble: ensemble.o testensemble.o
 	g++ -g $^ -o $@
 	
 clean: 
-	rm *.o testcoord testensemble
+	rm *.o testcoord testensemble simulation

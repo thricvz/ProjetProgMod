@@ -128,7 +128,7 @@ void Jeu::comportementRenard(int id){
 
     //deux modes de se deplacer : en mangant ou en vaguant
 
-    if(casesVoisines.size()==0){
+    if(proiesVoisines.size()==0){
         //on jeune et on mange
         renard->jeune();
 
@@ -155,30 +155,30 @@ void Jeu::comportementRenard(int id){
             grille.setCase(id,nouvelleCoord);
         }
     }else{
-        if(proiesVoisines.empty()){
-            return ;
-        }else if(proiesVoisines.size()==1){
-            int idProie = grille.getCase(proiesVoisines[0]);
-            Animal *proie = population.get(idProie);
+        if(proiesVoisines.size()==1){
+            int idProie= grille.getCase(proiesVoisines[0]);
+            Animal * proie = population.get(idProie);
+            //mettre a jour la position
             Coord nouvelleCoord = proie->getCoord();
 
             renard->setCoord(nouvelleCoord);
             grille.setCase(-1,ancienCoord);
             grille.setCase(id,nouvelleCoord);
             
-            population.supprime(proie->getId());
-            
+            population.supprime(idProie);
+
         }else{
-            int choixProie = rand()%(proiesVoisines.size());
-            int idProie = grille.getCase(proiesVoisines[choixProie]);
-            Animal *proie = population.get(idProie);
+            int choixcase = rand()%proiesVoisines.size();
+            int idProie= grille.getCase(proiesVoisines[choixcase]);
+            Animal * proie = population.get(idProie);
+            //mettre a jour la position
             Coord nouvelleCoord = proie->getCoord();
 
             renard->setCoord(nouvelleCoord);
             grille.setCase(-1,ancienCoord);
             grille.setCase(id,nouvelleCoord);
             
-            population.supprime(proie->getId());
+            population.supprime(idProie);
         }
     }
 
@@ -191,15 +191,18 @@ void Jeu::comportementRenard(int id){
 
 void Jeu::joueTour(){
     //moviemnt lapin
-    for(auto animal: population.getIds()){
+    vector<int> idsCopy = population.getIds();
+    for(auto animal: idsCopy){
         if(population.get(animal)->getEspece()== Espece::lapin){
             comportementLapin(animal);
         }
     }
+    idsCopy= population.getIds();
     //mouvement des renards
-    for(auto animal: population.getIds()){
-        if(population.get(animal)!=nullptr && population.get(animal)->getEspece()== Espece::renard){
+    for(auto animal: idsCopy){
+        if(population.get(animal) && population.get(animal)->getEspece()== Espece::renard){
             comportementRenard(animal);
+            std::cout << "renard" << std::endl;
         }
     }
 

@@ -41,8 +41,8 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Ecosystem Simulation");
     window.setFramerateLimit(60);
     
-    Jeu simulation(0.1, 0.1);
-    int ntours = 10;
+    Jeu simulation(0.1, 0.5);
+    int ntours = 100;
     
     while (window.isOpen() && ntours > 0) {
         sf::Event event;
