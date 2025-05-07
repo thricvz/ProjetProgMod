@@ -16,6 +16,10 @@ class Jeu{
         vector<Coord> voisinsVides(Coord c);
         vector<Coord> voisinsEspece(Espece espece,Coord c);
         std::string lettreCase(Coord c);
+
+        void comportementLapin(int id);
+        void comportementRenard(int id);
+
 };
 
 #endif

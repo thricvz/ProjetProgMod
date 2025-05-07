@@ -7,8 +7,8 @@ int FoodInit = 5;
 int FoodLapin = 5;
 int FoodReprod = 8;
 int MaxFood = 10;
-float ProbBirthRenard = 0.05;
-float ProbBirthLapin = 0.30;
+int ProbBirthRenard = 5;
+int ProbBirthLapin = 30;
 int MinFreeBirthLapin = 4;
 
 Animal::Animal(){
@@ -40,29 +40,20 @@ Espece Animal::getEspece(){
 };
 
 bool Animal::seReproduit(int casesLibres){
-    if(espece==Espece::lapin){
-        if(casesLibres>=MinFreeBirthLapin){
-            //effectue le tirage au sort
-            srand(time(0));
-            int tirage = rand()%100;
-            //regarde si les probabilites sont bonnes
-            if(tirage < static_cast<int>(ProbBirthLapin*100))
-                return true;
-            else 
-                return false;
-        } 
-    //cas ou c'est un renard   
-    }else{
-        if(food >= FoodReprod){
-            srand(time(0));
-            int tirage = rand()%100;
-            //regarde si les probabilites sont bonnes
-            if(tirage < static_cast<int>(ProbBirthRenard*100))
-                return true;
-            else 
-                return false;   
-        }
+    if(espece==Espece::lapin && casesLibres>=MinFreeBirthLapin ){
+        int tirage = rand()%100;
+        if(tirage < ProbBirthLapin)
+            return true;
+    //cas ou c'est un renard
     }
+    
+    if (espece==Espece::renard && food >= FoodReprod){
+        int tirage = rand()%100;
+        if(tirage < ProbBirthRenard)
+            return true;
+    }
+    
+    return false;
 }
 
 

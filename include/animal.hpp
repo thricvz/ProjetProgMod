@@ -7,8 +7,8 @@ extern int FoodInit;
 extern int FoodLapin;
 extern int FoodReprod; 
 extern int MaxFood;
-extern float ProbBirthRenard;
-extern float ProbBirthLapin;
+extern int ProbBirthRenard;
+extern int ProbBirthLapin;
 extern int MinFreeBirthLapin;
 
 enum class Espece {lapin,renard};

@@ -1,4 +1,4 @@
-simulation : main.o animal.o coord.o ensemble.o jeu.o population.o grille.o 
+simulation : main.o animal.o coord.o ensemble.o jeu.o population.o grille.o -lsfml-graphics -lsfml-window -lsfml-system
 	g++ -g $^ -o $@	
 
 %.o : source/%.cpp
