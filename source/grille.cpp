@@ -2,8 +2,8 @@
 
 
 Grille::Grille(){
-    grilleIds = vector<int>(TAILLEGRILLE);
-    for(int i =0;i<TAILLEGRILLE;i++){
+    grilleIds = vector<int>(TAILLEGRILLE*TAILLEGRILLE);
+    for(int i =0;i<TAILLEGRILLE*TAILLEGRILLE;i++){
         grilleIds[i] = -1;
     }
 }
@@ -24,3 +24,4 @@ void Grille::videCase(Coord c){
 void Grille::setCase(int idAnimal, Coord coordAnimal){
     grilleIds[coordAnimal.toInt()]=idAnimal;
 };
+

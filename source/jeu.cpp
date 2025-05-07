@@ -8,22 +8,42 @@ void Jeu::ajouteAnimal(Espece espece,Coord c){
 }
 
 Jeu::Jeu(float pLapin,float pRenard){
-    for(int casei =0;casei<TAILLEGRILLE;casei++){
-        Coord currentCord(casei);
-        //commence par tirer au hasard pour le lapin
-        srand(time(0));
-        int tirage{rand()%100};
-        if(tirage <= static_cast<int>(pLapin*100)){
-            ajouteAnimal(Espece::lapin,currentCord);
+    //calcule le nombre de renards et de lapins a placer
+    int Nrenards = static_cast<int>(TAILLEGRILLE*TAILLEGRILLE*pRenard);
+    int Nlapins = static_cast<int>(TAILLEGRILLE*TAILLEGRILLE*pLapin);
 
-        }else if(tirage <= static_cast<int>(pRenard*100)){
-            ajouteAnimal(Espece::lapin,currentCord);
-       
-        }else{
-            //on guarde la case vide
-
+    srand(0);
+    while(Nrenards>0){
+        //tire une position au hasard
+        int x = rand()%TAILLEGRILLE;
+        int y = rand()%TAILLEGRILLE;
+        Coord emplacement(x,y);
+        if(grille.caseVide(emplacement)){
+            Nrenards--;
+            ajouteAnimal(Espece::renard,emplacement);
         }
+            
     }
+
+
+
+    while(Nlapins>0){
+        //tire une position au hasard
+        int x = rand()%TAILLEGRILLE;
+        int y = rand()%TAILLEGRILLE;
+        Coord emplacement(x,y);
+        if(grille.caseVide(emplacement)){
+            Nlapins--;
+            ajouteAnimal(Espece::lapin,emplacement);
+        }
+            
+    }
+
+
+
+
+    //place tous les lapins
+    //par defaut les autres cases sont deja vides
 };
 
 
@@ -55,7 +75,7 @@ vector<Coord> Jeu::voisinsVides(Coord c){
     vector<Coord> neighbor = vector<Coord>(0);
     for (auto n: voisins(c)){
         if(grille.caseVide(c))
-        neighbor.push_back(n);
+           neighbor.push_back(n);
     }
     
     return neighbor;
@@ -77,16 +97,16 @@ void Jeu::joueTour(){
     //deplace dabord tous les lapins
     for(auto idAnimal: population.getIds()){
         //check si c'est un lapin
-        if(population.get(idAnimal)->getEspece()==Espece::lapin){
+        if(population.get(idAnimal)!=nullptr && population.get(idAnimal)->getEspece()==Espece::lapin){
             Animal * lapin = population.get(idAnimal);
             //choix du deplacement
             std::vector<Coord> voisinsLapin = voisinsVides(lapin->getCoord());
             //si le lapin peut se deplacer 
             if(voisinsLapin.size()!=0){
-                srand(0);
+                srand(time(0));
                 int choix = rand()%voisinsLapin.size(); 
                 Coord nouvelleCase= voisinsLapin[choix];
-        
+       
                 //decide s'il se reproduit ou pas
                 if(lapin->seReproduit(voisinsLapin.size())){
                     ajouteAnimal(Espece::lapin,nouvelleCase);
@@ -104,7 +124,8 @@ void Jeu::joueTour(){
     //comportement des renards
     for(auto idAnimal: population.getIds()){
         //check si c'est un renard
-        if(population.get(idAnimal)->getEspece()==Espece::renard){
+        srand(time(0));
+        if(population.get(idAnimal)!=nullptr && population.get(idAnimal)->getEspece()==Espece::renard){
             Animal * renard = population.get(idAnimal);
             //choix du deplacement
             std::vector<Coord> voisinsRenard = voisinsEspece(Espece::lapin,renard->getCoord());
@@ -114,7 +135,6 @@ void Jeu::joueTour(){
                 int choixVictime;
 
                 if(voisinsRenard.size()>1){
-                    srand(0);
                     choixVictime =  rand()% voisinsRenard.size();
                 }else{
                     choixVictime = 0;
@@ -138,7 +158,22 @@ void Jeu::joueTour(){
                 if(renard->meurt()){
                     grille.setCase(-1,renard->getCoord());
                     population.supprime(renard->getId());
+                }else{
+                    vector<Coord> casesVides = voisinsVides(renard->getCoord()); 
+                    if(casesVides.size()!=0){
+
+                        srand(time(0));
+                        int choix = rand()%casesVides.size(); 
+                        Coord nouvelleCase = casesVides[choix];
+    
+    
+                        grille.setCase(-1,renard->getCoord());
+                        grille.setCase(renard->getId(),nouvelleCase);
+                        renard->setCoord(nouvelleCase);
+           
+                    }
                 }
+
             }
         }
     }
@@ -147,3 +182,15 @@ void Jeu::joueTour(){
     
 
 };
+
+
+std::string Jeu::lettreCase(Coord c){
+    if(grille.caseVide(c))
+       return "   ";
+    //discover what animal it is
+    Animal * animal = population.get(grille.getCase(c));
+    if(animal->getEspece() == Espece::lapin)
+        return "L";
+
+    return "R";
+}

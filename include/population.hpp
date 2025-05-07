@@ -6,8 +6,7 @@ using namespace std;
 
 class Population{
     vector<Animal*> pop;
-    int available_id=0;
-    vector<int> reusable_id = vector<int>(0);
+    int idCounter=0;
     public:
         Population();
 
@@ -16,7 +15,7 @@ class Population{
 
         int reserve();
         int set(Espece e, Coord c);
-        void supprime(int i);
+        void supprime(int id);
 };
 
 #endif
