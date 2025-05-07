@@ -1,8 +1,9 @@
-#pragma once
 #include <vector>
 #include <ctime>
 #include <ostream>
-extern const int MAXCARD = 10;
+
+#define MAXCARD 10;
+
 using namespace std;
 
 class Ensemble{

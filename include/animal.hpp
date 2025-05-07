@@ -1,15 +1,14 @@
 #pragma once
 #include "../include/coord.hpp"
 using namespace std;
-
+#define FoodInit  5 ;
+#define FoodLapin  5 ;
+#define FoodReprod 8 ;
+#define MaxFood  10 ;
+#define ProbBirthRenard  0.05 ;
+#define ProbBirthLapin  0.30 ;
+#define MinFreeBirthLapin 4;
 enum class Espece {lapin,renard};
-extern int FoodInit = 5 ;
-extern int FoodLapin = 5 ;
-extern int FoodReprod = 8 ;
-extern int MaxFood = 10 ;
-extern float ProbBirthRenard = 0.05 ;
-extern float ProbBirthLapin = 0.30 ;
-extern int MinFreeBirthLapin = 4;
 
 class Animal{
 	Espece espece;
