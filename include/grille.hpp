@@ -1,5 +1,5 @@
-
-#pragma once
+#ifndef GRILLE_H
+#define GRILLE_H
 #include <vector>
 #include "../include/coord.hpp"
 
@@ -14,3 +14,4 @@ class Grille{
         void setCase(int idAnimal, Coord coordAnimal);
 
 };
+#endif

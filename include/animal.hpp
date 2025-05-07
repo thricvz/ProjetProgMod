@@ -1,13 +1,16 @@
-#pragma once
+#ifndef ANIMAL_H
+#define ANIMAL_H
 #include "../include/coord.hpp"
 using namespace std;
-#define FoodInit  5 ;
-#define FoodLapin  5 ;
-#define FoodReprod 8 ;
-#define MaxFood  10 ;
-#define ProbBirthRenard  0.05 ;
-#define ProbBirthLapin  0.30 ;
-#define MinFreeBirthLapin 4;
+
+extern int FoodInit;
+extern int FoodLapin;
+extern int FoodReprod; 
+extern int MaxFood;
+extern float ProbBirthRenard;
+extern float ProbBirthLapin;
+extern int MinFreeBirthLapin;
+
 enum class Espece {lapin,renard};
 
 class Animal{
@@ -34,3 +37,4 @@ class Animal{
 		void jeune();
 };
 
+#endif

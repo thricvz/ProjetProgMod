@@ -1,11 +1,9 @@
 #include "../include/jeu.hpp"
 
 
-
 void Jeu::ajouteAnimal(Espece espece,Coord c){
-    int idAnimal{0};
-    idAnimal = population.reserve();
-    population.set(espece,c);
+    int idAnimal = population.set(espece,c);
+    
     grille.setCase(idAnimal,c);
 }
 
@@ -83,19 +81,23 @@ void Jeu::joueTour(){
             Animal * lapin = population.get(idAnimal);
             //choix du deplacement
             std::vector<Coord> voisinsLapin = voisinsVides(lapin->getCoord());
-            srand(0);
-            int choix = rand()%voisinsLapin.size(); 
-            Coord nouvelleCase= voisinsLapin[choix];
-
-            //decide s'il se reproduit ou pas
-            if(lapin->seReproduit(voisinsLapin.size())){
-                ajouteAnimal(Espece::lapin,nouvelleCase);
-            }else{
-                //mets a jour la grille
-                grille.setCase(-1,lapin->getCoord());
-                grille.setCase(lapin->getId(),nouvelleCase);
-                lapin->setCoord(nouvelleCase);
+            //si le lapin peut se deplacer 
+            if(voisinsLapin.size()!=0){
+                srand(0);
+                int choix = rand()%voisinsLapin.size(); 
+                Coord nouvelleCase= voisinsLapin[choix];
+        
+                //decide s'il se reproduit ou pas
+                if(lapin->seReproduit(voisinsLapin.size())){
+                    ajouteAnimal(Espece::lapin,nouvelleCase);
+                }else{
+                    //mets a jour la grille
+                    grille.setCase(-1,lapin->getCoord());
+                    grille.setCase(lapin->getId(),nouvelleCase);
+                    lapin->setCoord(nouvelleCase);
+                }
             }
+                
         }
     }
     

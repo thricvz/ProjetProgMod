@@ -1,8 +1,9 @@
+#ifndef ENSEMBLE_H
+#define ENSEMBLE_H
 #include <vector>
 #include <ctime>
 #include <ostream>
-
-#define MAXCARD 10;
+extern const int MAXCARD;
 
 using namespace std;
 
@@ -30,3 +31,4 @@ class Ensemble{
 
 
 ostream& operator<<(ostream& out, Ensemble e);
+#endif

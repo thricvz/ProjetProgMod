@@ -1,7 +1,7 @@
-#pragma once
+#ifndef JEU_H
+#define JEU_H
 #include "../include/population.hpp"
 #include "../include/grille.hpp"
-#include "../include/coord.hpp"
 
 class Jeu{
     Grille grille;
@@ -16,3 +16,5 @@ class Jeu{
         vector<Coord> voisinsVides(Coord c);
         vector<Coord> voisinsEspece(Espece espece,Coord c);
 };
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef COORD_H
+#define COORD_H
 #include <iostream>
 #include "../include/ensemble.hpp"
 
@@ -30,3 +31,5 @@ bool operator==(Coord c, Coord c2);
 
 bool operator!=(Coord c, Coord c2);
 
+
+#endif

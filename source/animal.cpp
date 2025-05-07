@@ -3,6 +3,14 @@
 #include <ctime>
 #include <iostream>
 
+int FoodInit = 5;
+int FoodLapin = 5;
+int FoodReprod = 8;
+int MaxFood = 10;
+float ProbBirthRenard = 0.05;
+float ProbBirthLapin = 0.30;
+int MinFreeBirthLapin = 4;
+
 Animal::Animal(){
     id = -1;   
     Coord Coord(0);

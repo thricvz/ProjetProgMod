@@ -1,4 +1,5 @@
-#pragma once
+#ifndef POPULATION_H
+#define POPULATION_H
 #include "../include/animal.hpp"
 #include <vector>
 using namespace std;
@@ -14,6 +15,8 @@ class Population{
         vector<int> getIds();
 
         int reserve();
-        void set(Espece e, Coord c);
+        int set(Espece e, Coord c);
         void supprime(int i);
 };
+
+#endif

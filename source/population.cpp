@@ -38,9 +38,10 @@ int Population::reserve(){
 }
 
 
-void Population::set(Espece e, Coord c){
+int Population::set(Espece e, Coord c){
     int idAnimal = reserve();
     pop[idAnimal] = new Animal(idAnimal,e,c);
+    return idAnimal;
 };
 
 

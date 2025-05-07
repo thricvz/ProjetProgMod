@@ -3,6 +3,7 @@
 #include <ostream>
 
 using namespace std;
+const int MAXCARD=10;
 Ensemble::Ensemble(){
 	t=vector<int>(MAXCARD);
 	card=0;
