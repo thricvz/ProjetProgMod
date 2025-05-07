@@ -1,3 +1,4 @@
+#pragma once
 #include "../include/animal.hpp"
 #include <vector>
 using namespace std;

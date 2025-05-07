@@ -1,4 +1,8 @@
 #include "../include/coord.hpp"
+
+Coord::Coord(){
+	x = y = NULL;
+}
 Coord::Coord(int lig, int col){
 	if (lig >= TAILLEGRILLE or col >= TAILLEGRILLE or lig<0 or col<0) throw invalid_argument("Mauvaises coordonnées");
 	x=lig;

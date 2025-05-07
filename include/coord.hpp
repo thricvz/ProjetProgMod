@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "../include/ensemble.hpp"
 
@@ -11,7 +12,7 @@ class Coord{
 	public :
 
 	Coord(int lig, int col);
-
+	Coord();
 	Coord(int n);
 	
 	int getx() const;

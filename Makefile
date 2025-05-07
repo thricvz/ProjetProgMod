@@ -1,3 +1,6 @@
+simulation : main.o animal.o coord.o ensemble.o jeu.o population.o grille.o
+	g++ -g $^ -o $@	
+
 %.o : source/%.cpp
 	g++ -g $^ -c -o $@
 

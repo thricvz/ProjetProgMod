@@ -1,10 +1,10 @@
-#define DOCTEST_CONFIG_IMPLEMENT
-#include "../include/doctest.h"
-#include "../include/coord.hpp"
+#include "../include/jeu.hpp"
 
-int main(int argc, const char** argv){
-    Coord c = Coord(50);
-	cout<<c<<endl;
-	Ensemble e = Ensemble();
-	cout<<e<<endl;
+int ntours =  10;
+int main(){
+	Jeu simulation(0.3,0.1);
+	while(ntours >0){
+		simulation.joueTour();
+	}
+	return 0;
 }

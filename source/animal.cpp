@@ -5,7 +5,7 @@
 
 Animal::Animal(){
     id = -1;   
-
+    Coord Coord(0);
 }
 
 Animal::Animal(int identifiant,Espece e, Coord c){
@@ -19,7 +19,7 @@ int Animal::getId(){
     return id;
 };
 
-int Animal::getCoord(){
+Coord Animal::getCoord(){
     return coordonne;
 };
 

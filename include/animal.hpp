@@ -1,14 +1,15 @@
+#pragma once
 #include "../include/coord.hpp"
 using namespace std;
 
 enum class Espece {lapin,renard};
-int FoodInit = 5 ;
-int FoodLapin = 5 ;
-int FoodReprod = 8 ;
-int MaxFood = 10 ;
-float ProbBirthRenard = 0.05 ;
-float ProbBirthLapin = 0.30 ;
-int MinFreeBirthLapin = 4;
+extern int FoodInit = 5 ;
+extern int FoodLapin = 5 ;
+extern int FoodReprod = 8 ;
+extern int MaxFood = 10 ;
+extern float ProbBirthRenard = 0.05 ;
+extern float ProbBirthLapin = 0.30 ;
+extern int MinFreeBirthLapin = 4;
 
 class Animal{
 	Espece espece;
@@ -20,7 +21,7 @@ class Animal{
 		Animal(int identifiant,Espece e, Coord c);
 
 		int getId();
-		int getCoord();
+		Coord getCoord();
 
 		void setCoord(Coord c);
 		Espece getEspece();
